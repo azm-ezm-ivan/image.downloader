@@ -1,7 +1,7 @@
 version: "3"
 services:
   image-downloader:
-    image: imagedownloader:1
+    image: imagedownloader
     build:
       context: ./
       dockerfile: Dockerfile
