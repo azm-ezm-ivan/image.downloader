@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -38,6 +39,8 @@ public class MainController {
                 HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
                 BufferedImage image = ImageIO.read(connection.getInputStream());
                 image = Thumbnails.of(image).forceSize(100, 100).asBufferedImage();
+                File file = new File(fileName);
+                write(image, formatName, file);
                 write(image, formatName, outputStream);
                 imageList.add(new Image(fileName, outputStream.toByteArray()));
             }
